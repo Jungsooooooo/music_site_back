@@ -20,7 +20,7 @@ import com.music.restful.user.service.UserService;
 
 
 @Controller
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 	
 	@Autowired
@@ -64,6 +64,14 @@ public class UserController {
 	public ResponseEntity<Boolean> checkUser(@PathVariable String id){
 		
 		return ResponseEntity.ok(userService.existsById(id));
+	}
+	
+	@PostMapping("/findid")
+	public ResponseEntity<?> findId(@RequestBody UserRequestDto userRequestDto){
+		UserInfo userInfo	= userService.findId(userRequestDto);
+		UserResponseDto userResponseDto = new UserResponseDto(userInfo);
+		
+		return new ResponseEntity<>(userResponseDto, HttpStatus.OK );
 	}
 	
 }

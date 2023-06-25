@@ -15,5 +15,7 @@ public interface UserService {
 	public UserInfo loginUser(UserRequestDto userRequestDto);
 	
 	public List<UserInfo> getAllUser();
+	
+	public UserInfo findId(UserRequestDto userRequestDto);
 		
 }

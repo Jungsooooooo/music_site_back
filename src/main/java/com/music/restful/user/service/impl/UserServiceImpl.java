@@ -67,4 +67,17 @@ public class UserServiceImpl implements UserService {
 		
 		return userRepository.findAll();
 	}
+
+	@Override
+	public UserInfo findId(UserRequestDto userRequestDto) {
+		
+		String name		= userRequestDto.getName();
+		String email	= userRequestDto.getEmail();
+		
+		UserInfo userInfo = userRepository.findByEmailAndName(email, name);
+		
+		return userInfo;
+	}
+	
+	
 }

@@ -26,9 +26,10 @@ public class UserResponseDto  {
 		this.id = userInfo.getId();
 		this.address = userInfo.getAddress();
 		this.phone = userInfo.getPhone();
-		this.uid = userInfo.getUid();
 		this.name = userInfo.getName();
 	}
+	
+
 
 //	public String getId() {
 //		return id;
