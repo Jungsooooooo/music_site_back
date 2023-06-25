@@ -1,16 +1,8 @@
 package com.music.restful.musicList.dto;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.music.restful.musicList.entity.MusicInfo;
 import com.music.restful.user.entity.UserInfo;
-import com.music.restful.user.repository.UserRepository;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 

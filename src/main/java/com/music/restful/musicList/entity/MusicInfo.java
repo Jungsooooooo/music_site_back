@@ -1,17 +1,10 @@
 package com.music.restful.musicList.entity;
 
-import java.util.UUID;
-
-import org.hibernate.annotations.GenericGenerator;
-
 import com.music.restful.foundation.uuid.CommonUUID;
 import com.music.restful.user.entity.UserInfo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;

@@ -26,27 +26,5 @@ public class MusicRecommendResponseDto {
 		this.uid = musicInfo.getUid();
 		
 	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getInfo() {
-		return info;
-	}
-
-	public Double getRecommended() {
-		return recommended;
-	}
-
-	public UserInfo getUserInfo() {
-		return userInfo;
-	}
-
-	public String getGenre() {
-		return genre;
-	}
-	
-	
 	
 }

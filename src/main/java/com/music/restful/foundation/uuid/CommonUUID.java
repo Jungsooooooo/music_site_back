@@ -11,8 +11,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import lombok.Getter;
 
 @Entity

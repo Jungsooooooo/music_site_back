@@ -12,11 +12,9 @@ import com.music.restful.musicList.service.MusicInfoService;
 import com.music.restful.user.entity.UserInfo;
 import com.music.restful.user.repository.UserRepository;
 
-import javax.persistence.criteria.From;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 @RequiredArgsConstructor
 @Service
 public class MusicInfoServiceImpl implements MusicInfoService {

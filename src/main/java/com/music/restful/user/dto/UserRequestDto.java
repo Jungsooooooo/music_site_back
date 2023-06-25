@@ -1,7 +1,6 @@
 package com.music.restful.user.dto;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

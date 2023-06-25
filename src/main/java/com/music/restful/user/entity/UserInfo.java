@@ -1,9 +1,7 @@
 package com.music.restful.user.entity;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.music.restful.foundation.uuid.CommonUUID;
@@ -12,11 +10,8 @@ import com.music.restful.musicList.entity.MusicInfo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
 
 @Entity

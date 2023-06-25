@@ -13,9 +13,7 @@ import com.music.restful.user.repository.UserRepository;
 import com.music.restful.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
