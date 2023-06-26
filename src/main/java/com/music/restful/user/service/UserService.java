@@ -17,5 +17,7 @@ public interface UserService {
 	public List<UserInfo> getAllUser();
 	
 	public UserInfo findId(UserRequestDto userRequestDto);
+	
+	public UserInfo findPassword(UserRequestDto userRequestDto);
 		
 }

@@ -77,5 +77,17 @@ public class UserServiceImpl implements UserService {
 		return userInfo;
 	}
 	
+	@Override
+	public UserInfo findPassword(UserRequestDto userRequestDto) {
+		
+		String id	 = userRequestDto.getId();
+		String name	 = userRequestDto.getName();
+		String email = userRequestDto.getEmail(); 
+		
+		UserInfo userInfo = userRepository.findByEmailAndNameAndId(email, name, id);
+		
+		return userInfo;
+	}
+	
 	
 }
