@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.music.restful.user.dto.UserFindIdResponseDto;
 import com.music.restful.user.dto.UserRequestDto;
 import com.music.restful.user.dto.UserResponseDto;
 import com.music.restful.user.entity.UserInfo;
@@ -69,9 +70,9 @@ public class UserController {
 	@PostMapping("/findid")
 	public ResponseEntity<?> findId(@RequestBody UserRequestDto userRequestDto){
 		UserInfo userInfo	= userService.findId(userRequestDto);
-		UserResponseDto userResponseDto = new UserResponseDto(userInfo);
+		UserFindIdResponseDto userFindIdResponseDto = new UserFindIdResponseDto(userInfo);
 		
-		return new ResponseEntity<>(userResponseDto, HttpStatus.OK );
+		return new ResponseEntity<>(userFindIdResponseDto, HttpStatus.OK );
 	}
 	
 }
