@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.music.restful.token.JwtTokenProvider;
 import com.music.restful.user.dto.UserFindIdResponseDto;
 import com.music.restful.user.dto.UserRequestDto;
 import com.music.restful.user.dto.UserResponseDto;
@@ -23,6 +24,9 @@ import com.music.restful.user.service.UserService;
 @Controller
 @RequestMapping("/api/users")
 public class UserController {
+	
+	@Autowired
+	private JwtTokenProvider jwtTokenProvider;
 	
 	@Autowired
 	private UserService userService;
@@ -38,19 +42,20 @@ public class UserController {
 	
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> login(@RequestBody UserRequestDto userRequestDto){
-		UserInfo userInfo = userService.loginUser(userRequestDto);
-	 
-		if(userInfo != null) {
-			
-//			final String token = tokenProvider.create(userInfo);
-			UserResponseDto userResponseDto = new UserResponseDto(userInfo);
-//			UserResponseDto userResponseDto1 = UserResponseDto.builder().id(userInfo.getId()).token(token).build();
-		return new ResponseEntity<>(userResponseDto,HttpStatus.OK);
-		}
-		
-		return null;
-	}
+	   public ResponseEntity<?> login(@RequestBody UserRequestDto userRequestDto){
+	      UserInfo userInfo = userService.loginUser(userRequestDto);
+	    
+	      if(userInfo != null) {
+	         
+//	         final String token = tokenProvider.create(userInfo);
+	         UserResponseDto userResponseDto = new UserResponseDto(userInfo);
+//	         UserResponseDto userResponseDto1 = UserResponseDto.builder().id(userInfo.getId()).token(token).build();
+	      String token =   jwtTokenProvider.createToken(userResponseDto.getId(), userResponseDto.getName());
+	      return ResponseEntity.ok(token);
+	      }
+	      
+	      return null;
+	   }
 
 	@PostMapping
 	public ResponseEntity<?> createUser(@RequestBody UserRequestDto userRequestDto){
@@ -61,7 +66,7 @@ public class UserController {
 		return new ResponseEntity<>(userResponseDto,HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/check/{id}")
 	public ResponseEntity<Boolean> checkUser(@PathVariable String id){
 		
 		return ResponseEntity.ok(userService.existsById(id));
