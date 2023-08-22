@@ -2,6 +2,7 @@ package com.music.restful.user.entity;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.music.restful.foundation.uuid.CommonUUID;
@@ -49,6 +50,9 @@ public class UserInfo extends CommonUUID  {
 	
 	@OneToOne(mappedBy = "userInfo", fetch=FetchType.LAZY)
 	private MusicInfo musicInfo;
+	
+	@ColumnDefault("USER")
+	private String role;
 
 	public void setId(String id) {
 		this.id = id;
@@ -87,5 +91,8 @@ public class UserInfo extends CommonUUID  {
 		this.name = name;
 	}
 	
+	public void setRole(String role) {
+		this.role=role;
+	}
 	
 }
