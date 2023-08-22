@@ -7,10 +7,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import com.music.restful.user.entity.UserInfo;
+import com.music.restful.user.repository.UserRepository;
 import com.music.restful.user.service.UserService;
 
 import io.jsonwebtoken.Claims;
@@ -52,6 +54,11 @@ public class JwtTokenProvider {
     // 토큰에서 회원 정보 추출
     public String getUserPk(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+    }
+    
+    public Authentication getAuthentication(String token) {
+        UserInfo userInfo = userService.getUserByToken(this.getUserPk(token));
+        return new UsernamePasswordAuthenticationToken(userInfo,"");
     }
 
     // Request의 Header에서 token 값을 가져옵니다. "X-AUTH-TOKEN" : "TOKEN값'
