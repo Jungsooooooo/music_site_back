@@ -15,8 +15,8 @@ import com.music.restful.musicList.service.MusicInfoService;
 
 
 @Controller
-@RequestMapping("/api/musicMain")
-public class mainController {
+@RequestMapping("/api/musics")
+public class MusicController {
 	
 	@Autowired
 	private MusicInfoService musicInfoService;
