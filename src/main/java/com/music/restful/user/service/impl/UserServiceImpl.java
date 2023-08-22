@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return userRepository.findByIdAndPassword(id, password );
+		return userRepository.findByIdAndPassword(id, password);
 	}
 	
 	@Override
@@ -85,6 +85,14 @@ public class UserServiceImpl implements UserService {
 		String email = userRequestDto.getEmail(); 
 		
 		UserInfo userInfo = userRepository.findByEmailAndNameAndId(email, name, id);
+		
+		return userInfo;
+	}
+
+	@Override
+	public UserInfo getUserByToken(String token) {
+		
+		UserInfo userInfo = userRepository.findById(token);
 		
 		return userInfo;
 	}

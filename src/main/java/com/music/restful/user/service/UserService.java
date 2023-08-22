@@ -19,5 +19,7 @@ public interface UserService {
 	public UserInfo findId(UserRequestDto userRequestDto);
 	
 	public UserInfo findPassword(UserRequestDto userRequestDto);
+	
+	public UserInfo getUserByToken(String token);
 		
 }
