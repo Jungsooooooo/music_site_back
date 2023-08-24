@@ -2,17 +2,22 @@ package com.music.restful.token;
 
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import com.music.restful.user.entity.UserInfo;
 import com.music.restful.user.repository.UserRepository;
+import com.music.restful.user.service.CustomUserDetailsService;
 import com.music.restful.user.service.UserService;
 
 import io.jsonwebtoken.Claims;
@@ -25,11 +30,12 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class JwtTokenProvider {
 	
-	 private String secretKey = "sorktksmsskfehddksdpwndudrhkddnlgkdutkdydgkdhqthtjsorktksmsskfehddksdp";
+	 private String secretKey = "llshlllshlllshlllshl";
 	
 	  // 토큰 유효시간 30분
     private long tokenValidTime = 30 * 60 * 1000L;
-    private final UserService userService;
+    private final UserDetailsService userDetailsService;
+    private final CustomUserDetailsService customUserDetailsService; 
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
     @PostConstruct
@@ -41,6 +47,7 @@ public class JwtTokenProvider {
     public String createToken(String userId, String roles) {
         Claims claims = Jwts.claims().setSubject(userId); // JWT payload 에 저장되는 정보단위
         claims.put("roles", roles); // 정보는 key / value 쌍으로 저장된다.
+        
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims) // 정보 저장
@@ -53,17 +60,17 @@ public class JwtTokenProvider {
     
     // 토큰에서 회원 정보 추출
     public String getUserPk(String token) {
+    	String test = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
     
     public Authentication getAuthentication(String token) {
-        UserInfo userInfo = userService.getUserByToken(this.getUserPk(token));
-        return new UsernamePasswordAuthenticationToken(userInfo,"");
+        UserDetails userDetails = customUserDetailsService.loadUserByUsername(this.getUserPk(token));
+        return new UsernamePasswordAuthenticationToken(userDetails,"",userDetails.getAuthorities());
     }
 
     public String resolveToken(HttpServletRequest request) {
-    	String headerAuth = request.getHeader("Authorization");
-        return request.getHeader("Authorization");
+        return request.getHeader("X-AUTH-TOKEN");
     }
 
     // 토큰의 유효성 + 만료일자 확인
