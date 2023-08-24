@@ -10,6 +10,8 @@ import com.music.restful.musicList.entity.MusicInfo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -51,7 +53,7 @@ public class UserInfo extends CommonUUID  {
 	@OneToOne(mappedBy = "userInfo", fetch=FetchType.LAZY)
 	private MusicInfo musicInfo;
 	
-	@ColumnDefault("USER")
+	@Column
 	private String role;
 
 	public void setId(String id) {
@@ -92,7 +94,7 @@ public class UserInfo extends CommonUUID  {
 	}
 	
 	public void setRole(String role) {
-		this.role=role;
+		this.role = role;
 	}
 	
 }
