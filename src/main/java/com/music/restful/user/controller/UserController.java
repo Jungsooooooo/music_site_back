@@ -49,9 +49,10 @@ public class UserController {
 	         
 //	         final String token = tokenProvider.create(userInfo);
 	         UserResponseDto userResponseDto = new UserResponseDto(userInfo);
+	         String token =   jwtTokenProvider.createToken(userResponseDto.getId(), userResponseDto.getName());
+	         userResponseDto.setToken(token)
 //	         UserResponseDto userResponseDto1 = UserResponseDto.builder().id(userInfo.getId()).token(token).build();
-	      String token =   jwtTokenProvider.createToken(userResponseDto.getId(), userResponseDto.getName());
-	      return ResponseEntity.ok(token);
+	      return ResponseEntity.ok(userResponseDto);
 	      }
 	      
 	      return null;
