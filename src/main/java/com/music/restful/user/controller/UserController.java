@@ -35,7 +35,7 @@ public class UserController {
 	public ResponseEntity<?> getUser(){
 		List<UserInfo> userInfo = userService.getAllUser();
 		List<UserResponseDto> userResponseDto = userInfo.stream().map(user-> new UserResponseDto(user)).collect(Collectors.toList());
-		
+		 
 		return new ResponseEntity<>(userResponseDto,HttpStatus.OK);
 		
 	}

@@ -1,5 +1,7 @@
 package com.music.restful.user.dto;
 
+import java.util.UUID;
+
 import com.music.restful.user.entity.UserInfo;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +21,7 @@ public class UserResponseDto  {
 	private String phone;
 	private String token;
 	private String name;
+	private UUID uuid;
 	
 	public UserResponseDto(UserInfo userInfo) {
 		super();
@@ -26,6 +29,7 @@ public class UserResponseDto  {
 		this.address = userInfo.getAddress();
 		this.phone = userInfo.getPhone();
 		this.name = userInfo.getName();
+		this.uuid = userInfo.getUid();
 	}
 	
 }
