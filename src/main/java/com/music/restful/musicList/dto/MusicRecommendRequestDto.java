@@ -5,9 +5,10 @@ import com.music.restful.user.entity.UserInfo;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Builder
 @Getter
+@NoArgsConstructor
 public class MusicRecommendRequestDto {
 	
 	private String title;
