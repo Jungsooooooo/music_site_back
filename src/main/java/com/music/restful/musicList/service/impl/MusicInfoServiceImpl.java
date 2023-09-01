@@ -1,5 +1,6 @@
 package com.music.restful.musicList.service.impl;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,16 @@ public class MusicInfoServiceImpl implements MusicInfoService {
 		
 		return musicInfo;
 	}
+
+
+	@Override
+	public List<MusicInfo> getAllMusicInfo() {
+		
+		List<MusicInfo> musics = musicInfoRepository.findAll();
+		
+		return musics;
+	}
+	
+	
 
 }
