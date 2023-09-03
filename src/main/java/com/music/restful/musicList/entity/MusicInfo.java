@@ -6,6 +6,7 @@ import com.music.restful.user.entity.UserInfo;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -23,7 +24,7 @@ public class MusicInfo extends CommonUUID {
 	private Double recommended;
 	private String writer;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="r_userInfo_uid")
 	private UserInfo userInfo;
 	

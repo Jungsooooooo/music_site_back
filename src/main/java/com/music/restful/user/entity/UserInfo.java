@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -50,8 +51,8 @@ public class UserInfo extends CommonUUID  {
 	@Column
 	private String type;
 	
-	@OneToOne(mappedBy = "userInfo", fetch=FetchType.LAZY)
-	private MusicInfo musicInfo;
+//	@OneToMany(mappedBy = "userInfo", fetch=FetchType.LAZY)
+//	private MusicInfo musicInfo;
 	
 	@Column
 	private String role;
